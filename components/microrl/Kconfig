@@ -1,0 +1,89 @@
+menu "Microrl Configuration"
+
+config MICRORL_LIB_VER
+    string "Microrl Library Version"
+    default "1.5.1"
+
+config MICRORL_COMMAND_LINE_LEN
+    int "Command line length (include NULL)"
+    default 101
+    range 2 1024
+    help
+        Maximum command line buffer size.
+        Must be actual maximum length + 1 for '\0'.
+
+config MICRORL_COMMAND_TOKEN_NMB
+    int "Maximum command tokens"
+    default 8
+    range 1 32
+    help
+        Maximum number of tokens (words separated by spaces).
+
+config MICRORL_PROMPT_DEFAULT
+    string "Default prompt string"
+    default "\033[32mIRin >\033[0m "
+
+config MICRORL_PROMPT_LEN
+    int "Prompt text length (without ESC sequence)"
+    default 7
+    help
+        Length of visible prompt text only.
+
+config MICRORL_USE_COMPLETE
+    bool "Enable TAB completion"
+    default y
+
+config MICRORL_USE_HISTORY
+    bool "Enable command history"
+    default y
+
+config MICRORL_RING_HISTORY_LEN
+    int "History ring buffer length"
+    depends on MICRORL_USE_HISTORY
+    default 64
+    range 1 256
+    help
+        Static ring buffer size.
+        Maximum allowed is 256 bytes.
+
+choice MICRORL_ENDL_TYPE
+    prompt "New line symbol"
+    default MICRORL_ENDL_LF
+
+config MICRORL_ENDL_CR
+    bool "CR (\\r)"
+
+config MICRORL_ENDL_LF
+    bool "LF (\\n)"
+
+config MICRORL_ENDL_CRLF
+    bool "CRLF (\\r\\n)"
+
+config MICRORL_ENDL_LFCR
+    bool "LFCR (\\n\\r)"
+
+endchoice
+
+config MICRORL_USE_ESC_SEQ
+    bool "Enable ESC sequence handling"
+    default y
+    help
+        Enable arrow keys, HOME, END handling.
+
+config MICRORL_USE_LIBC_STDIO
+    bool "Use snprintf from libc"
+    default y
+    help
+        If disabled, library uses internal u16int_to_str implementation.
+
+config MICRORL_USE_CTRL_C
+    bool "Enable Ctrl+C interrupt callback"
+    default y
+
+config MICRORL_ENABLE_INIT_PROMPT
+    bool "Print prompt during microrl_init"
+    default n
+    help
+        Enable only if communication is already initialized.
+
+endmenu
