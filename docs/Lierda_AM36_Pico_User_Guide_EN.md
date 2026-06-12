@@ -50,9 +50,9 @@ The following files in `docs/` provide board-level and module-level reference ma
 
 The development board appearance is shown in Figure 1.1:
 
-![Development board front](assets/lierda_am36_pico_user_guide_rev1_1/figure_01.png)
+![Development board front](pic/Front.png)
 
-![Development board back](assets/lierda_am36_pico_user_guide_rev1_1/figure_02.png)
+![Development board back](pic/Back.png)
 
 *Figure 1.1 Development board*
 
@@ -88,7 +88,7 @@ The key hardware features of the AM36 development kit are listed below. Module-r
 
 ## Component Description
 
-![Development board interfaces](assets/lierda_am36_pico_user_guide_rev1_1/figure_03.png)
+![Development board interfaces](pic/Inerface.png)
 
 *Figure 2.1 Development board interface diagram*
 

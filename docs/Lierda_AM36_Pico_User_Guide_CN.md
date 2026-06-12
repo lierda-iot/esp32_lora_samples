@@ -38,22 +38,22 @@
 
 L-LRMAM36-FANN4-PK02 是基于利尔达 AM36 模组（L-LRMAM36-FANN4）的评估开发板。开发板出厂已贴装 AM36 模组，模组基于 ESP32-S3 与 LR2021 设计，支持 Wi-Fi、BLE、Generation 4 LoRa、FLRC、2-FSK/4-FSK 等无线能力，可用于 LoRa 射频性能评估及应用开发。
 
-## Related Documents
+## 相关文档
 
-The following files in `docs/` provide board-level and module-level reference material:
+`docs/` 目录下的以下文件提供开发板级和模组级参考资料：
 
-| File | Description |
+| 文件 | 说明 |
 | --- | --- |
-| `L-LRMAM36-FANN4-PK02_SCH_V01.pdf` | Development board schematic. Use this file to understand the electrical connections and signal routing on the AM36 development board. |
-| `L-LRMAM36-FANN4-PK02_layout_V01.pdf` | Development board layout file. Use this file to review the PCB placement, routing, and board-level implementation details. |
-| `L-LRMAM36-FANN4_V01.step` | Module 3D mechanical model. Use this file for enclosure fitting, mechanical checking, and installation reference. |
-| `Lierda L-LRMAM36-FANN4 Hardware Design Manual_EN_Rev1.0.pdf` | English module hardware design manual. Use this file for the module specification, pin definitions, electrical characteristics, and integration guidance. |
-| `Lierda L-LRMAM36-FANN4 Hardware Design Manual_CN_Rev1.0.pdf` | Chinese module hardware design manual. Use this file when a Chinese-language hardware integration reference is preferred. |
+| `L-LRMAM36-FANN4-PK02_SCH_V01.pdf` | 开发板原理图，用于查看 AM36 开发板的电气连接关系和信号走线。 |
+| `L-LRMAM36-FANN4-PK02_layout_V01.pdf` | 开发板 layout 文件，用于查看 PCB 器件布局、走线和板级实现细节。 |
+| `L-LRMAM36-FANN4_V01.step` | 模组 3D 结构模型，用于外壳适配、结构检查和安装参考。 |
+| `Lierda L-LRMAM36-FANN4 Hardware Design Manual_EN_Rev1.0.pdf` | 英文版模组硬件设计手册，用于查看模组规格、引脚定义、电气特性和集成设计说明。 |
+| `Lierda L-LRMAM36-FANN4 Hardware Design Manual_CN_Rev1.0.pdf` | 中文版模组硬件设计手册，适合需要中文硬件集成参考的用户使用。 |
 
 开发板外观示意如图 1.1 所示：
 
-![Figure](assets/lierda_am36_pico_user_guide_rev1_1/figure_01.png)
-![Figure](assets/lierda_am36_pico_user_guide_rev1_1/figure_02.png)
+![开发板正面](pic/Front.png)
+![开发板背面](pic/Back.png)
 
 *图 1.1 开发板示意图*
 
@@ -89,7 +89,7 @@ AM36 开发套件的主要硬件特性如下。模组相关参数来源于 L-LRM
 
 ## 组件描述
 
-![Figure](assets/lierda_am36_pico_user_guide_rev1_1/figure_03.png)
+![开发板接口示意图](pic/Inerface.png)
 
 *图 2.1 开发板接口示意图*
 
