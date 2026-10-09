@@ -1,172 +1,172 @@
 ---
-# 语言: None, Cpp, Java, JavaScript, ObjC, Proto, TableGen, TextProto
+# Language: None, Cpp, Java, JavaScript, ObjC, Proto, TableGen, TextProto
 Language:        Cpp
 # BasedOnStyle:  Google
-# 访问权限说明符(public/protected/private)的偏移
+# Offset of access specifiers (public/protected/private)
 AccessModifierOffset: -1
-# 开括号(开圆括号/开尖括号/开方括号)后的对齐: Align, DontAlign, AlwaysBreak(总是在开括号后换行)
+# Alignment after an open bracket (parenthesis/angle bracket/square bracket): Align, DontAlign, AlwaysBreak (always break after the open bracket)
 AlignAfterOpenBracket: Align
-# 连续宏定义时的对齐方式
+# Alignment of consecutive macro definitions
 AlignConsecutiveMacros: false
-# 连续赋值时，对齐所有等号
+# Align the equals signs of consecutive assignments
 AlignConsecutiveAssignments: true
-# 连续位域的对齐方式
+# Alignment of consecutive bit fields
 AlignConsecutiveBitFields: false
-# 连续声明时，变量名的对齐方式
+# Alignment of variable names in consecutive declarations
 AlignConsecutiveDeclarations: false
-# 反斜杠换行的对齐方式: DontAlign, Left, Right
+# Alignment of backslashes in escaped newlines: DontAlign, Left, Right
 AlignEscapedNewlines: Left
-# 二元/三元表达式占用多行时的对齐方式: DontAlign, Align, AlignAfterOperator
+# Alignment of binary/ternary expression operands that span several lines: DontAlign, Align, AlignAfterOperator
 AlignOperands:   Align
-# 对齐行尾注释
+# Align trailing comments
 AlignTrailingComments: true
-# 允许函数调用和参数一行放不下时将参数全部放下一行
+# Allow all arguments of a function call to go on the next line when they do not fit on one line
 AllowAllArgumentsOnNextLine: true
-# 允许构造函数的所有初始化成员变量一行放不下时全部放下一行
-# Note: 仅在ConstructorInitializerAllOnOneLineOrOnePerLine为true时有效
+# Allow all constructor initializers to go on the next line when they do not fit on one line
+# Note: only effective when ConstructorInitializerAllOnOneLineOrOnePerLine is true
 AllowAllConstructorInitializersOnNextLine: true
-# 允许函数声明的所有参数一行放不下时全部放下一行
+# Allow all parameters of a function declaration to go on the next line when they do not fit on one line
 AllowAllParametersOfDeclarationOnNextLine: true
-# 允许短的枚举在同一行
+# Allow short enums on a single line
 AllowShortEnumsOnASingleLine: false
-# 允许短的代码块在同一行: Never, Empty, Always
+# Allow short blocks on a single line: Never, Empty, Always
 AllowShortBlocksOnASingleLine: Never
-# 允许短的case标签和语句在同一行
+# Allow short case labels and statements on a single line
 AllowShortCaseLabelsOnASingleLine: false
-# 允许短的函数在同一行: None, InlineOnly, Empty, Inline, All
+# Allow short functions on a single line: None, InlineOnly, Empty, Inline, All
 AllowShortFunctionsOnASingleLine: None
-# 允许短的lambda语句在同一行: None, Empty, Inline, All
+# Allow short lambdas on a single line: None, Empty, Inline, All
 AllowShortLambdasOnASingleLine: All
-# 允许短的if语句在同一行: Never, WithoutElse, OnlyFirstIf, AllIfAndElse
+# Allow short if statements on a single line: Never, WithoutElse, OnlyFirstIf, AllIfAndElse
 AllowShortIfStatementsOnASingleLine: false
-# 允许短的循环保持在同一行
+# Allow short loops on a single line
 AllowShortLoopsOnASingleLine: false
-# 总是在函数定义的返回值类型后换行:
-# None(由PenaltyReturnTypeOnItsOwnLine决定)
-# All(总在返回值类型后换行)
-# TopLevel(仅在顶层函数的定义的返回值类型后换行)
+# Break after the return type of function definitions:
+# None (decided by PenaltyReturnTypeOnItsOwnLine)
+# All (always break after the return type)
+# TopLevel (break after the return type of top-level function definitions only)
 AlwaysBreakAfterDefinitionReturnType: None
-# 总是在函数声明/定义的返回值类型后换行:
-# None(由PenaltyReturnTypeOnItsOwnLine决定)
-# All(总在返回值类型后换行)
-# TopLevel(仅在顶层函数的声明/定义的返回值类型后换行)
-# AllDefinitions(在所有函数的定义的返回值类型后换行)
-# TopLevelDefinitions(仅在顶层函数的定义的返回值类型后换行)
+# Break after the return type of function declarations/definitions:
+# None (decided by PenaltyReturnTypeOnItsOwnLine)
+# All (always break after the return type)
+# TopLevel (break after the return type of top-level function declarations/definitions only)
+# AllDefinitions (break after the return type of all function definitions)
+# TopLevelDefinitions (break after the return type of top-level function definitions only)
 AlwaysBreakAfterReturnType: None
-# 总是在多行strings前换行
+# Always break before multiline strings
 AlwaysBreakBeforeMultilineStrings: true
-# 总是在模板声明时换行:
-# None(由PenaltyBreakTemplateDeclaration控制)
-# MultiLine(仅在模板声明需要多行时换行)
-# Yes(总是换行)
+# Break after template declarations:
+# None (controlled by PenaltyBreakTemplateDeclaration)
+# MultiLine (break only when the template declaration spans several lines)
+# Yes (always break)
 AlwaysBreakTemplateDeclarations: Yes
-# 函数调用时, 参数的放置规则
-# false(参数要么同一行, 要么每个参数各占一行对齐)
-# true(不做强制要求)
+# Placement of function call arguments
+# false (arguments are either all on one line or one per line, aligned)
+# true (no requirement)
 BinPackArguments: false
-# 函数声明/定义时, 参数的放置规则
-# false(参数要么同一行, 要么每个参数各占一行对齐)
-# true(不做强制要求)
+# Placement of function declaration/definition parameters
+# false (parameters are either all on one line or one per line, aligned)
+# true (no requirement)
 BinPackParameters: false
-# 大括号换行，只有当BreakBeforeBraces设置为Custom时才有效
+# Brace wrapping, only effective when BreakBeforeBraces is Custom
 BraceWrapping:
-  # case标签后换行
+  # Break after a case label
   AfterCaseLabel:  true
-  # class定义后换行
+  # Break after a class definition
   AfterClass:      true
-  # 控制语句后换行
+  # Break after a control statement
   AfterControlStatement: true
-  # enum定义后换行
+  # Break after an enum definition
   AfterEnum:       true
-  # 函数定义后换行
+  # Break after a function definition
   AfterFunction:   true
-  # 命名空间定义后换行
+  # Break after a namespace definition
   AfterNamespace:  true
-  # ObjC定义后换行
+  # Break after an ObjC definition
   AfterObjCDeclaration: true
-  # struct定义后换行
+  # Break after a struct definition
   AfterStruct:     true
-  # union定义后换行
+  # Break after a union definition
   AfterUnion:      true
-  # extern后换行
+  # Break after extern
   AfterExternBlock: false
-  # catch前换行
+  # Break before catch
   BeforeCatch:     true
-  # else前换行
+  # Break before else
   BeforeElse:      true
-  # lambda表达式的主体前换行
+  # Break before the body of a lambda expression
   BeforeLambdaBody: false
-  # do-while的while前换行
+  # Break before the while of a do-while
   BeforeWhile:     false
-  # 大括号缩进
+  # Indent the braces
   IndentBraces:    false
-  # 空白函数两行
+  # Put the braces of an empty function on two lines
   SplitEmptyFunction: true
-  # 空白结构class/struct/union分两行
+  # Put the braces of an empty class/struct/union on two lines
   SplitEmptyRecord: true
-  # 空白命名空间分两行
+  # Put the braces of an empty namespace on two lines
   SplitEmptyNamespace: true
-# 二元表达式的换行风格: None(在操作符后换行), NonAssignment(在非赋值的操作符前换行), All(在操作符前换行)
+# Line breaks in binary expressions: None (break after operators), NonAssignment (break before non-assignment operators), All (break before operators)
 BreakBeforeBinaryOperators: None
-# 大括号前换行:
-# Attach(始终将大括号附加到周围的上下文)
-# Linux(与Attach类似, 除了函数/命名空间/类定义的大括号放下一行)
-# Mozilla(与Attach类似, 除枚举/函数/结构的大括号放下一行)
-# Stroustrup(与Attach类似, 除函数定义前/catch前/else前的大括号放下一行)
-# Allman(总是在大括号前换行)
-# GNU(总是在大括号前换行, 但在控制语句后的大括号总是对齐到下一位置)
-# WebKit(与Attach类似, 但在函数定义前换行)
-# Custom(依赖BraceWrapping)
+# Break before braces:
+# Attach (always attach braces to the surrounding context)
+# Linux (like Attach, but put the braces of function/namespace/class definitions on the next line)
+# Mozilla (like Attach, but put the braces of enum/function/struct definitions on the next line)
+# Stroustrup (like Attach, but break before function definitions, catch and else)
+# Allman (always break before braces)
+# GNU (always break before braces, and indent the braces after control statements)
+# WebKit (like Attach, but break before function definitions)
+# Custom (use BraceWrapping)
 BreakBeforeBraces: Custom
-# 类的继承逗号前换行
+# Break before the commas of a class inheritance list
 BreakBeforeInheritanceComma: false
-# 类的继承列表分割方式: BeforeColon, BeforeComma, AfterColon, AfterComma
+# How to split a class inheritance list: BeforeColon, BeforeComma, AfterColon, AfterComma
 BreakInheritanceList: BeforeColon
-# 三元表达式不能放一行时在三元操作符前换行
+# Break before ternary operators when a ternary expression does not fit on one line
 BreakBeforeTernaryOperators: true
-# 构造函数初始化列表逗号前换行
+# Break before the commas of a constructor initializer list
 BreakConstructorInitializersBeforeComma: false
-# 构造函数初始化列表换行: BeforeColon, BeforeComma, AfterColon
+# Line breaks in constructor initializer lists: BeforeColon, BeforeComma, AfterColon
 BreakConstructorInitializers: BeforeColon
-# 在Java注解后方换行
+# Break after Java field annotations
 BreakAfterJavaFieldAnnotations: false
-# 字符串过长换行
+# Break string literals that are too long
 BreakStringLiterals: true
-# 每行字符的限制，0表示没有限制，120较合适
+# Column limit, 0 means no limit; 120 works well
 ColumnLimit:     120
-# 描述具有特殊意义的注释的正则表达式，它不应该被分割为多行或以其它方式改变
+# Regular expression for comments with a special meaning, which must not be split or otherwise changed
 CommentPragmas:  '^ IWYU pragma:'
-# 压缩紧接的命名空间
+# Put consecutive namespace declarations on the same line
 CompactNamespaces: false
-# 构造函数初始化列表同一行或各一行
+# Constructor initializers either all on one line or one per line
 ConstructorInitializerAllOnOneLineOrOnePerLine: true
-# 构造函数初始化列表和基类继承列表的对齐缩进宽度
+# Indent width of constructor initializer lists and inheritance lists
 ConstructorInitializerIndentWidth: 4
-# 延续行的缩进宽度
+# Indent width of continuation lines
 ContinuationIndentWidth: 4
-# C++11初始化列表风格
+# C++11 braced list style
 Cpp11BracedListStyle: true
-# 继承常用的行结尾: true(分析文件的行结尾，若无法分析则使用UseCRLF), false(不分析)
+# Derive the line ending: true (analyze the line endings of the file, use UseCRLF if they cannot be determined), false (do not analyze)
 DeriveLineEnding: true
-# 继承最常用的指针和引用的对齐方式
+# Derive the most common pointer and reference alignment
 DerivePointerAlignment: false
-# 禁用格式化
+# Disable formatting
 DisableFormat:   false
-# 试验性的自动检测bin pack类型
+# Experimental automatic detection of the bin packing style
 ExperimentalAutoDetectBinPacking: false
-# 修正命名空间的结束注释
+# Fix namespace end comments
 FixNamespaceComments: true
-# 应该被解释为foreach循环, 而不是函数调用的宏定义
+# Macros that should be treated as foreach loops instead of function calls
 ForEachMacros:
   - foreach
   - Q_FOREACH
   - BOOST_FOREACH
-# 多个include块(有空行分隔的include)排序时的分组规则: 
-# Preserve(保留原有块分隔, 各自排序)
-# Merge(合并所有块进行排序)
-# Regroup(合并所有块, 按IncludeCategories规则排序)
+# Grouping rule when sorting several include blocks (includes separated by blank lines):
+# Preserve (keep the blocks and sort each one)
+# Merge (merge all blocks and sort them together)
+# Regroup (merge all blocks and sort them by IncludeCategories)
 IncludeBlocks:   Regroup
-# include排序规则
+# Include sorting rules
 IncludeCategories:
   - Regex:           '^<ext/.*\.h>'
     Priority:        2
@@ -182,37 +182,37 @@ IncludeCategories:
     SortPriority:    0
 IncludeIsMainRegex: '([-_](test|unittest))?$'
 IncludeIsMainSourceRegex: ''
-# case标签的缩进
+# Indent case labels
 IndentCaseLabels: true
-# case语句块的缩进
+# Indent case blocks
 IndentCaseBlocks: true
-# goto标签缩进
+# Indent goto labels
 IndentGotoLabels: true
-# 预处理命令(#if\#ifdef\#endif...)的缩进: None, AfterHash(在前导#后缩进, #在最左边，之后的语句缩进), BeforeHash(在前导#前缩进)
+# Indentation of preprocessor directives (#if/#ifdef/#endif...): None, AfterHash (keep # in the first column and indent after it), BeforeHash (indent before #)
 IndentPPDirectives: None
-# extern块的缩进: AfterExternBlock, NoIndent, Indent
+# Indentation of extern blocks: AfterExternBlock, NoIndent, Indent
 IndentExternBlock: AfterExternBlock
-# 缩进宽度
+# Indent width
 IndentWidth:     4
-# 函数名过长导致换行时的缩进
+# Indent wrapped function names that are too long
 IndentWrappedFunctionNames: false
-# 仅用于JavaScript的配置，需要配置为None
+# JavaScript only, must be None
 InsertTrailingCommas: None
-# JavaScript中字符串引号规则: Leave(保持原样), Single(单引号), Double(双引号)
+# Quotes for JavaScript strings: Leave (keep as is), Single (single quotes), Double (double quotes)
 JavaScriptQuotes: Leave
-# JavaScript的import/export语句后换行
+# Break after JavaScript import/export statements
 JavaScriptWrapImports: true
-# 块的起始位置保留空行
+# Keep empty lines at the start of blocks
 KeepEmptyLinesAtTheStartOfBlocks: false
-# 用于识别宏定义块起始的正则表达式
+# Regular expression that matches the start of a macro block
 MacroBlockBegin: ''
-# 用于识别宏定义块结束的正则表达式
+# Regular expression that matches the end of a macro block
 MacroBlockEnd:   ''
-# 最大保留空行行数
+# Maximum number of consecutive empty lines to keep
 MaxEmptyLinesToKeep: 1
-# 命名空间内部的缩进: None, Inner, All
+# Indentation inside namespaces: None, Inner, All
 NamespaceIndentation: None
-# Objective-C 相关配置
+# Objective-C settings
 ObjCBinPackProtocolList: Never
 ObjCBlockIndentWidth: 2
 ObjCBreakBeforeNestedBlockParam: true
@@ -220,14 +220,14 @@ ObjCSpaceAfterProperty: false
 ObjCSpaceBeforeProtocolList: true
 PenaltyBreakAssignment: 2
 PenaltyBreakBeforeFirstCallParameter: 1
-# 在一个注释中引入换行的penalty
+# Penalty for each line break introduced inside a comment
 PenaltyBreakComment: 300
 PenaltyBreakFirstLessLess: 120
 PenaltyBreakString: 1000
 PenaltyBreakTemplateDeclaration: 10
 PenaltyExcessCharacter: 1000000
 PenaltyReturnTypeOnItsOwnLine: 200
-# 指针和引用的对齐: Left, Right, Middle, 在DerivePointerAlignment失效后启用
+# Pointer and reference alignment: Left, Right, Middle; used when DerivePointerAlignment is off
 PointerAlignment: Right
 RawStringFormats:
   - Language:        Cpp
@@ -259,65 +259,65 @@ RawStringFormats:
       - ParsePartialTestProto
     CanonicalDelimiter: ''
     BasedOnStyle:    google
-# 重新排版注释
+# Reflow comments
 ReflowComments:  true
-# 排序所有#include
+# Sort all #include lines
 SortIncludes:    true
-# 排序所有using声明
+# Sort all using declarations
 SortUsingDeclarations: true
-# 在C风格类型转换后加空格
+# Add a space after a C-style cast
 SpaceAfterCStyleCast: false
-# 逻辑取反后加空格
+# Add a space after a logical not
 SpaceAfterLogicalNot: false
-# 模板关键字后加空格
+# Add a space after the template keyword
 SpaceAfterTemplateKeyword: true
-# 赋值运算符前加空格
+# Add a space before assignment operators
 SpaceBeforeAssignmentOperators: true
-# C++11舒适化列表前加空格
+# Add a space before a C++11 braced list
 SpaceBeforeCpp11BracedList: false
-# 构造函数初始化冒号前加空格
+# Add a space before the colon of a constructor initializer
 SpaceBeforeCtorInitializerColon: true
-# 构造函数的继承冒号前加空格
+# Add a space before the inheritance colon of a class
 SpaceBeforeInheritanceColon: true
-# 圆括号前加空格: Never, ControlStatements(for/if/while...), Always
+# Add a space before parentheses: Never, ControlStatements (for/if/while...), Always
 SpaceBeforeParens: ControlStatements
-# for循环中的冒号前加空格
+# Add a space before the colon of a range-based for loop
 SpaceBeforeRangeBasedForLoopColon: true
-# 空白块{}中加空格
+# Add a space inside an empty block {}
 SpaceInEmptyBlock: true
-# 空的圆括号中加空格
+# Add a space inside empty parentheses
 SpaceInEmptyParentheses: false
-# 尾随的评论前加空格数(只适用于//)
+# Number of spaces before trailing comments (only applies to //)
 SpacesBeforeTrailingComments: 1
-# 尖括号中加空格
+# Add spaces inside angle brackets
 SpacesInAngles:  false
-# 条件语句(if/for/switch/while)中加空格
+# Add spaces inside the parentheses of conditional statements (if/for/switch/while)
 SpacesInConditionalStatement: false
-# 容器(ObjC和JavaScript的数组和字典等)字面量中加空格
+# Add spaces inside container literals (ObjC and JavaScript arrays, dictionaries, etc.)
 SpacesInContainerLiterals: true
-# C风格类型转换的括号中加空格
+# Add spaces inside the parentheses of a C-style cast
 SpacesInCStyleCastParentheses: false
-# 圆括号中加空格
+# Add spaces inside parentheses
 SpacesInParentheses: false
-# 方括号中加空格，lamda表达式和未指明大小的数组的声明不受影响
+# Add spaces inside square brackets; lambdas and declarations of arrays without a size are not affected
 SpacesInSquareBrackets: false
-# 方括号前加空格，lamda表达式和未指明大小的数组的声明不受影响
+# Add a space before square brackets; lambdas and declarations of arrays without a size are not affected
 SpaceBeforeSquareBrackets: false
-# 位域中冒号的添加规则: Both, None, Before, After
+# Spacing around the colon of bit fields: Both, None, Before, After
 BitFieldColonSpacing: Both
-# 标准: Cpp03, Cpp11, Auto
+# Standard: Cpp03, Cpp11, Auto
 Standard:        Auto
-# 用于宏扩展后自带分包的语句
+# Macros that are treated as complete statements
 StatementMacros:
   - Q_UNUSED
   - QT_REQUIRE_VERSION
-# tab宽度 4个空格
+# Tab width, 4 spaces
 TabWidth:        4
-# 使用"\r\n"作为换行
+# Use "\r\n" as the line ending
 UseCRLF:         false
-# 使用tab字符: Never, ForIndentation, ForContinuationAndIndentation, Always
+# Use tab characters: Never, ForIndentation, ForContinuationAndIndentation, Always
 UseTab:          Never
-# 对括号敏感的宏定义列表, 不允许修改这些宏定义
+# Whitespace-sensitive macros that must not be changed
 WhitespaceSensitiveMacros:
   - STRINGIZE
   - PP_STRINGIZE

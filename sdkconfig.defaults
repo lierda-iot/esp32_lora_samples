@@ -1,0 +1,11 @@
+# CLI (microrl): run a command on CR, which is what the Enter key sends in most serial terminals
+CONFIG_MICRORL_ENDL_CR=y
+CONFIG_MICRORL_PROMPT_DEFAULT="LR2021 >"
+# Visible prompt length, including the trailing space
+CONFIG_MICRORL_PROMPT_LEN=9
+CONFIG_MICRORL_RING_HISTORY_LEN=128
+CONFIG_MICRORL_ENABLE_INIT_PROMPT=y
+
+# CPU clock and FreeRTOS tick rate
+CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ_240=y
+CONFIG_FREERTOS_HZ=1000

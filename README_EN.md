@@ -2,9 +2,11 @@
 
 Language: [中文](README.md) | English
 
-This is an ESP-IDF based LR2021 LoRa example for the Lierda AM36 Pico development board L-LRMAM36-FANN4-PK02. It demonstrates LoRa point-to-point communication, RF parameter configuration, and interactive UART debugging.
+This is an ESP-IDF based LR2021 LoRa example for the Lierda AM36 Pico development board L-LRMAM36-FANN4-PK02. It demonstrates LoRa point-to-point communication, FLRC packet streaming, RF parameter configuration, and an interactive command line (CLI) over the board `USB` port.
 
 L-LRMAM36-FANN4-PK02 is an evaluation development board based on the Lierda AM36 module L-LRMAM36-FANN4. The AM36 module is mounted before shipment. The module is designed with ESP32-S3 and LR2021, and supports Wi-Fi, BLE, Generation 4 LoRa, FLRC, and 2-FSK/4-FSK wireless capabilities. It can be used for LoRa RF performance evaluation and application development.
+
+**High-speed FLRC**: the [esp_lora_driver](https://github.com/lierda-iot/esp32_lora_driver) component used by this example lets `LR2021` send and receive FLRC at a raw bit rate of 2.6 Mbit/s (`RAL_FLRC_RAW_BIT_RATE_2_600_MBPS`). Without coding (`RAL_FLRC_CR_1_1`), the measured application payload rate is close to 2.2 Mbit/s, not counting protocol overhead such as retransmissions and gaps between packets. The `flrc_burst_tx` / `flrc_burst_rx` commands of this example stream FLRC packets back to back and print the throughput every second.
 
 ## Table of Contents
 
@@ -14,7 +16,7 @@ L-LRMAM36-FANN4-PK02 is an evaluation development board based on the Lierda AM36
 - [Development Environment](#development-environment)
 - [Quick Start](#quick-start)
 - [Flashing](#flashing)
-- [UART Debugging](#uart-debugging)
+- [CLI Debugging](#cli-debugging)
 - [RF Parameters and CLI](#rf-parameters-and-cli)
 - [Project Structure](#project-structure)
 - [FAQ](#faq)
@@ -44,20 +46,20 @@ The development kit usually includes:
 | --- | --- | --- | --- |
 | 1 | AM36 Pico development board L-LRMAM36-FANN4-PK02 | 1 pc | The AM36 module L-LRMAM36-FANN4 is mounted before shipment. |
 | 2 | LoRa antenna | 1 pc | Used for LoRa RF communication and testing. |
-| 3 | USB Type-C data cable | 1 pc | Used for USB flashing or UART debugging. Use a cable that supports data transfer. |
+| 3 | USB Type-C data cable | 1 pc | Used for USB flashing and CLI debugging. Use a cable that supports data transfer. |
 
 ## Interface Overview
 
 <img src="docs/pic/Interface.png" alt="Development board interfaces" width="760">
 
-The board provides two Type-C connectors. The `USB` port is connected to the AM36 module USB interface and is used for firmware flashing and USB-JTAG/Serial debugging. The `UART` port uses the on-board CP2105 dual-channel USB-to-UART bridge to expose two UART channels for the sample CLI and user application expansion.
+The board provides two Type-C connectors. The `USB` port is connected to the AM36 module USB interface and is used for firmware flashing, USB-JTAG/Serial debugging, and the CLI of this example. The `UART` port uses the on-board CP2105 dual-channel USB-to-UART bridge to expose two UART channels for user applications; the CLI of this example does not use it.
 
 | Interface / Component | Description |
 | --- | --- |
 | LoRa antenna connector | SMA connector for the standard LoRa antenna. |
 | On-board Wi-Fi antenna | On-board PCB antenna. |
-| USB | Type-C connector connected to the AM36 module USB interface, used for firmware flashing and USB-JTAG/Serial debugging. |
-| UART | Type-C connector with an on-board CP2105 dual-channel USB-to-UART bridge; after connection to a PC, Enhanced and Standard COM ports are enumerated. |
+| USB | Type-C connector connected to the AM36 module USB interface, used for firmware flashing, USB-JTAG/Serial debugging, and the CLI of this example. |
+| UART | Type-C connector with an on-board CP2105 dual-channel USB-to-UART bridge; after connection to a PC, Enhanced and Standard COM ports are enumerated. Reserved for user applications. |
 | GPIO | AM36 module GPIO expansion interface. Functions can be multiplexed by software. For detailed pin functions, refer to the module hardware design manual. |
 | RST | Reset button, active low. |
 | BOOT | Download-mode button used with RESET to enter firmware download mode. |
@@ -77,8 +79,8 @@ The `docs/` directory provides board-level and module-level reference material:
 
 ## Development Environment
 
-- ESP-IDF v5.0 or later
-- [lierda-iot/esp_lora_driver](https://components.espressif.com/components/lierda-iot/esp_lora_driver)
+- ESP-IDF v5.0 or later (including v6.0)
+- [lierda-iot/esp_lora_driver](https://components.espressif.com/components/lierda-iot/esp_lora_driver) 1.0.0 or a later 1.x version (`^1.0.0` in [main/idf_component.yml](main/idf_component.yml))
 
 `esp_lora_driver` is fetched automatically by ESP-IDF Component Manager according to [main/idf_component.yml](main/idf_component.yml). During the first build, make sure the network can access the [ESP Component Registry](https://components.espressif.com/).
 
@@ -120,7 +122,7 @@ idf.py flash
 
 ## Flashing
 
-Connect the development board `USB` Type-C port to the computer. This port is connected to the AM36 module USB interface and is used for firmware flashing and USB-JTAG/Serial debugging.
+Connect the development board `USB` Type-C port to the computer. This port is connected to the AM36 module USB interface and is used for firmware flashing, USB-JTAG/Serial debugging, and the CLI of this example.
 
 Use a USB Type-C cable that supports data transfer. If a charge-only cable is used, the PC cannot recognize the device.
 
@@ -148,31 +150,39 @@ If flashing fails, manually enter download mode and flash again:
 3. Release the `BOOT` button.
 4. Run `idf.py flash` again.
 
-## UART Debugging
+## CLI Debugging
 
-The interactive CLI of this example is exposed on the development board `UART` Type-C port. This port uses the on-board CP2105 dual-channel USB-to-UART bridge to connect two ESP32-S3 UARTs from the AM36 module. The example uses the `Enhanced COM Port` mapped to UART1 by default.
+The interactive CLI of this example runs on the ESP32-S3 built-in USB-Serial-JTAG interface, that is, the same `USB` Type-C port used for flashing. No extra USB-to-UART driver is needed.
 
-| PC-side device name | UART | Module pins | Debug settings | Purpose |
-| --- | --- | --- | --- | --- |
-| Silicon Labs Dual CP2105 USB to UART Bridge: Enhanced COM Port | UART1 | GPIO47/GPIO48 | 921600, 8N1 | Default application communication and CLI debug UART |
-| Silicon Labs Dual CP2105 USB to UART Bridge: Standard COM Port | UART0 | GPIO43/GPIO44 | Configured by user application | Second UART, configurable by user application |
+| Item | Description |
+| --- | --- |
+| Port | Development board `USB` Type-C port |
+| PC-side device name | Windows: `USB Serial Device (COMx)`; Linux: `/dev/ttyACMx`; macOS: `/dev/cu.usbmodem-xxxx` |
+| Serial settings | USB-Serial-JTAG ignores the baud rate; any value set in the serial terminal works |
 
 Debugging steps:
 
-1. Install the CP210x USB-to-UART driver.
-2. Connect the development board `UART` Type-C port to the computer.
-3. Confirm the port number of the `Enhanced COM Port` in Device Manager or the system serial port list.
-4. Open the port with a serial terminal such as SSCOM, PuTTY, Tera Term, or minicom.
-5. Set the serial parameters to `921600, 8N1`.
-6. Reset the development board and enter `help` in the serial terminal.
+1. Connect the development board `USB` Type-C port to the computer.
+2. Confirm the port name in Device Manager or the system serial port list.
+3. Open the port with a serial terminal such as SSCOM, PuTTY, Tera Term, or minicom.
+4. Press Enter, then enter `help` in the serial terminal.
+
+Notes:
+
+- The CLI runs a command when it receives CR (`\r`), which is what the Enter key sends in most serial terminals. In tools that send typed text without a line ending by default, such as SSCOM, enable the option that appends CR or CRLF.
+- Resetting the development board also resets its USB connection. If the serial terminal does not reconnect automatically, close and reopen the port.
+- ESP-IDF boot messages may also appear on this port after a reset. After startup, the example only lets ESP-IDF error logs through so that they do not mix with the CLI output.
+- The `UART` Type-C port (CP2105 Enhanced COM Port: UART1, GPIO47/GPIO48; Standard COM Port: UART0, GPIO43/GPIO44) is not used by the CLI and is left for user applications.
 
 ## RF Parameters and CLI
 
 ### Default RF Parameters
 
+The example starts in LoRa mode with the following parameters:
+
 | Parameter | Default Value |
 | --- | --- |
-| Frequency | 868 MHz |
+| Frequency | 869 MHz |
 | TX Power | 14 dBm |
 | Modulation | LoRa |
 | Spreading Factor | SF7 |
@@ -183,9 +193,21 @@ Debugging steps:
 | Header Type | Explicit |
 | CRC | Enabled |
 
+After `modem flrc`, the FLRC parameters below are used. `freq` and `power` apply to the currently selected modem, and FLRC also defaults to 869 MHz and 14 dBm.
+
+| Parameter | Default Value |
+| --- | --- |
+| Bit Rate | 2.6 Mbit/s |
+| Coding Rate | 1/1, no coding |
+| Pulse Shape | BT 0.5 |
+| Preamble | 16 bits |
+| Sync Word | 4 bytes, 0x90563412 |
+| Payload Length | Variable |
+| CRC | 2 bytes |
+
 ### CLI Command Reference
 
-Connect to the UART1 Enhanced COM Port at 921600 baud. Type `help` to see all commands.
+Open the `USB` port in a serial terminal as described in [CLI Debugging](#cli-debugging). Type `help` to see all commands.
 
 #### General Commands
 
@@ -212,6 +234,7 @@ Connect to the UART1 Enhanced COM Port at 921600 baud. Type `help` to see all co
 | `wakeup` | `wakeup` | Wake up RF from sleep mode |
 | `reset` | `reset` | Reset the radio |
 | `per` | `per <0\|1>` | Enable or disable PER statistics |
+| `xosc` | `xosc <xta> <xtb> <wait_time_us>` | Get or set the LR2021 crystal oscillator configuration: XTA/XTB trim values and wait time |
 
 #### LoRa Parameter Commands
 
@@ -222,7 +245,27 @@ Connect to the UART1 Enhanced COM Port at 921600 baud. Type `help` to see all co
 | `lora_cr` | `lora_cr <4/5\|4/6\|4/7\|4/8\|li4/5\|li4/6\|li4/8>` | Get or set LoRa coding rate |
 | `lora_preamble` | `lora_preamble <length>` | Get or set LoRa preamble length |
 | `lora_syncword` | `lora_syncword <0x12\|0x34>` | Get or set LoRa sync word |
-| `lora_cad` | `lora_cad [rx_timeout_ms]` | Start LoRa CAD detection, optionally setting the RX timeout after activity is detected |
+| `lora_cad` | `lora_cad <cad_timeout_ms> [rx_timeout_ms]` | Start LoRa CAD detection. When activity is detected, RX starts with `rx_timeout_ms`, which defaults to `cad_timeout_ms`. |
+
+#### FLRC Parameter Commands
+
+| Command | Usage | Description |
+| --- | --- | --- |
+| `flrc_br` | `flrc_br <260\|325\|520\|650\|1040\|1300\|2080\|2600>` | Get or set FLRC bit rate in kbit/s |
+| `flrc_cr` | `flrc_cr <1/2\|3/4\|1/1\|2/3>` | Get or set FLRC coding rate |
+| `flrc_preamble` | `flrc_preamble <4\|8\|12\|16\|20\|24\|28\|32>` | Get or set FLRC preamble length in bits |
+| `flrc_crc` | `flrc_crc <off\|2\|3\|4>` | Get or set FLRC CRC length in bytes |
+
+#### FLRC Burst Streaming Commands
+
+| Command | Usage | Description |
+| --- | --- | --- |
+| `flrc_burst_tx` | `flrc_burst_tx [1/2\|3/4\|1/1\|2/3]` | Start back-to-back transmission of 511-byte FLRC packets, optionally setting the coding rate. Prints packets per second and Mbit/s every second. |
+| `flrc_burst_rx` | `flrc_burst_rx [1/2\|3/4\|1/1\|2/3]` | Start continuous FLRC reception, optionally setting the coding rate. Prints packets per second, Mbit/s, RSSI, and CRC errors every second. |
+| `flrc_burst_cr` | `flrc_burst_cr <1/2\|3/4\|1/1\|2/3>` | Get or set the burst coding rate, 3/4 by default. Takes effect on the next `flrc_burst_tx` or `flrc_burst_rx`. |
+| `flrc_burst_stop` | `flrc_burst_stop` | Stop burst TX or RX |
+
+Burst streaming uses its own FLRC settings: 2.6 Mbit/s, 32-bit preamble, 2-byte CRC. The transmitter and the receiver must use the same coding rate. These settings stay in effect for later FLRC commands; reset the development board to return to the default FLRC parameters.
 
 #### Test Mode Commands
 
@@ -233,21 +276,41 @@ Connect to the UART1 Enhanced COM Port at 921600 baud. Type `help` to see all co
 
 ### LoRa Point-to-Point Test Example
 
-Prepare two AM36 Pico development boards, flash the same firmware, and connect each board's UART1 Enhanced COM Port.
+Prepare two AM36 Pico development boards, flash the same firmware, and open the CLI of each board on its `USB` port.
 
 Receiver:
 
 ```text
-freq 868000000
+freq 869000000
 rx
 ```
 
 Transmitter:
 
 ```text
-freq 868000000
+freq 869000000
 tx 01 02 03 04
 ```
+
+### FLRC Burst Streaming Example
+
+Receiver:
+
+```text
+modem flrc
+freq 869000000
+flrc_burst_rx 1/1
+```
+
+Transmitter:
+
+```text
+modem flrc
+freq 869000000
+flrc_burst_tx 1/1
+```
+
+Enter `flrc_burst_stop` on either board to stop.
 
 ## Project Structure
 
@@ -256,7 +319,7 @@ tx 01 02 03 04
 |-- CMakeLists.txt
 |-- README.md
 |-- README_EN.md
-|-- dependencies.lock
+|-- sdkconfig.defaults
 |-- components/
 |   `-- microrl/
 |-- docs/
@@ -273,8 +336,8 @@ tx 01 02 03 04
     |-- main.c
     |-- LiotRfCmd.c
     |-- LiotRfCmd.h
-    |-- LiotUart.c
-    `-- LiotUart.h
+    |-- LiotUsbJtag.c
+    `-- LiotUsbJtag.h
 ```
 
 ## FAQ
@@ -295,19 +358,21 @@ During the first build, `lierda-iot/esp_lora_driver` is downloaded automatically
 - Confirm that the correct flashing port is selected.
 - Close any other program that is using the port.
 
-### No UART Output
+### No CLI Output
 
-- Confirm that the CP210x driver is installed.
-- Confirm that the development board `UART` Type-C port is connected, not the `USB` Type-C port.
-- Confirm that the CP2105 `Enhanced COM Port` is selected.
-- Confirm that the serial settings are `921600, 8N1`.
-- Confirm that the firmware has been flashed correctly and that the development board has been reset and is running.
+- Confirm that the development board `USB` Type-C port is connected, not the `UART` Type-C port.
+- Confirm that the board's USB-Serial-JTAG port is selected, not a CP2105 COM port.
+- Close any other program that is using the port, such as `idf.py monitor`.
+- After a reset, close and reopen the port if the serial terminal does not reconnect automatically.
+- Confirm that the firmware has been flashed correctly and that the development board is running, then press Enter.
+- If typed characters are echoed but commands do not run, make sure the serial tool sends a line ending (CR or CRLF). See [CLI Debugging](#cli-debugging).
 
 ## Safety Notes
 
 - Follow the radio regulations of the country or region where the wireless device is used.
 - Do not operate wireless devices in environments where they may cause safety risks, such as aircraft, restricted hospital areas, gas stations, chemical plants, or blasting areas.
 - When using LoRa RF test functions, select legal frequency bands and TX power according to local regulations.
+- `tx_cw`, `tx_preamble`, and `flrc_burst_tx` transmit continuously. Check the local duty cycle and bandwidth limits before using them, or use them in a shielded test environment.
 
 ## Additional Resources
 
