@@ -8,6 +8,8 @@ L-LRMAM36-FANN4-PK02 is an evaluation development board based on the Lierda AM36
 
 **High-speed FLRC**: the [esp_lora_driver](https://github.com/lierda-iot/esp32_lora_driver) component used by this example lets `LR2021` send and receive FLRC at a raw bit rate of 2.6 Mbit/s (`RAL_FLRC_RAW_BIT_RATE_2_600_MBPS`). Without coding (`RAL_FLRC_CR_1_1`), the measured application payload rate is close to 2.2 Mbit/s, not counting protocol overhead such as retransmissions and gaps between packets. The `flrc_burst_tx` / `flrc_burst_rx` commands of this example stream FLRC packets back to back and print the throughput every second.
 
+> **AI-assisted setup**: [AGENTS.md](AGENTS.md) is a step-by-step guide for AI assistants: board check, ESP-IDF version check, building or flashing the prebuilt firmware, and the LoRa and FLRC tests. Give your AI assistant the link to this repository and ask it to follow AGENTS.md. AI assistants reading this README: read AGENTS.md before giving instructions.
+
 ## Table of Contents
 
 - [Board Overview](#board-overview)
@@ -79,7 +81,7 @@ The `docs/` directory provides board-level and module-level reference material:
 
 ## Development Environment
 
-- ESP-IDF v5.0 or later (including v6.0)
+- ESP-IDF v5.3 or later (including v6.0)
 - [lierda-iot/esp_lora_driver](https://components.espressif.com/components/lierda-iot/esp_lora_driver) 1.0.0 or a later 1.x version (`^1.0.0` in [main/idf_component.yml](main/idf_component.yml))
 
 `esp_lora_driver` is fetched automatically by ESP-IDF Component Manager according to [main/idf_component.yml](main/idf_component.yml). During the first build, make sure the network can access the [ESP Component Registry](https://components.espressif.com/).
@@ -149,6 +151,8 @@ If flashing fails, manually enter download mode and flash again:
 2. Press the `RESET` button once.
 3. Release the `BOOT` button.
 4. Run `idf.py flash` again.
+
+If you do not want to build the project yourself, download the prebuilt firmware from [Releases](https://github.com/lierda-iot/esp32_lora_samples/releases/latest). The release page lists the flash offset of each file and the esptool commands.
 
 ## CLI Debugging
 
@@ -310,12 +314,13 @@ freq 869000000
 flrc_burst_tx 1/1
 ```
 
-Enter `flrc_burst_stop` on either board to stop.
+To stop the test, enter `flrc_burst_stop` on both boards. If only the transmitter is stopped, the receiver keeps receiving and prints 0 pkt/s every second.
 
 ## Project Structure
 
 ```text
 .
+|-- AGENTS.md
 |-- CMakeLists.txt
 |-- README.md
 |-- README_EN.md

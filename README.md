@@ -8,6 +8,8 @@ L-LRMAM36-FANN4-PK02 是基于 Lierda AM36 模组 L-LRMAM36-FANN4 的评估开�
 
 **高速 FLRC**：本示例使用的 [esp_lora_driver](https://github.com/lierda-iot/esp32_lora_driver) 组件支持 `LR2021` 以 2.6 Mbit/s 原始比特率（`RAL_FLRC_RAW_BIT_RATE_2_600_MBPS`）收发 FLRC。不加编码（`RAL_FLRC_CR_1_1`）时，实测应用层有效载荷速率接近 2.2 Mbit/s，不含重传、包间隔等协议开销。本示例的 `flrc_burst_tx` / `flrc_burst_rx` 命令可连续背靠背收发 FLRC 数据包，并每秒打印一次吞吐量。
 
+> **AI 辅助上手**：[AGENTS.md](AGENTS.md) 是写给 AI 助手的分步指引，包括确认开发板、检查 ESP-IDF 版本、编译或直接烧录预编译固件，以及 LoRa 和 FLRC 测试。把本仓库链接发给 AI 助手，让它按 AGENTS.md 一步步带你操作即可。AI 助手阅读本 README 时，请先读 AGENTS.md，再给出操作步骤。
+
 ## 目录
 
 - [开发板概览](#开发板概览)
@@ -79,7 +81,7 @@ L-LRMAM36-FANN4-PK02 是基于 Lierda AM36 模组 L-LRMAM36-FANN4 的评估开�
 
 ## 开发环境
 
-- ESP-IDF v5.0 或更高版本（含 v6.0）
+- ESP-IDF v5.3 或更高版本（含 v6.0）
 - [lierda-iot/esp_lora_driver](https://components.espressif.com/components/lierda-iot/esp_lora_driver) 1.0.0 或更高的 1.x 版本（[main/idf_component.yml](main/idf_component.yml) 中为 `^1.0.0`）
 
 `esp_lora_driver` 由 ESP-IDF Component Manager 根据 [main/idf_component.yml](main/idf_component.yml) 自动获取。首次编译时请确保网络可以访问 [ESP Component Registry](https://components.espressif.com/)。
@@ -149,6 +151,8 @@ idf.py -p /dev/cu.usbmodem-xxxx flash
 2. 按一下 `RESET` 按键。
 3. 松开 `BOOT` 按键。
 4. 重新执行 `idf.py flash`。
+
+不想自己编译时，可以从 [Releases](https://github.com/lierda-iot/esp32_lora_samples/releases/latest) 下载预编译固件，发布页写有各文件的烧录地址和 esptool 烧录命令。
 
 ## CLI 调试
 
@@ -310,12 +314,13 @@ freq 869000000
 flrc_burst_tx 1/1
 ```
 
-在任一开发板上输入 `flrc_burst_stop` 即可停止。
+测试结束后，在两块开发板上各输入一次 `flrc_burst_stop`。只停发送端时，接收端仍在接收，会继续每秒打印 0 pkt/s。
 
 ## 项目结构
 
 ```text
 .
+|-- AGENTS.md
 |-- CMakeLists.txt
 |-- README.md
 |-- README_EN.md

@@ -3,4 +3,4 @@ dependencies:
   lierda-iot/esp_lora_driver:
     version: "^1.0.0"
     registry_url: https://components.espressif.com
-  idf: ">=5.0"
+  idf: ">=5.3"
