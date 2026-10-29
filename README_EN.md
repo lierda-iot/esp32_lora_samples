@@ -78,6 +78,7 @@ The `docs/` directory provides board-level and module-level reference material:
 | [L-LRMAM36-FANN4_V01.step](docs/L-LRMAM36-FANN4_V01.step) | AM36 module 3D mechanical model for enclosure fitting, mechanical checking, and installation reference. |
 | [Lierda L-LRMAM36-FANN4 Hardware Design Manual_EN_Rev1.0.pdf](docs/Lierda%20L-LRMAM36-FANN4%20Hardware%20Design%20Manual_EN_Rev1.0.pdf) | English module hardware design manual for module specifications, pin definitions, electrical characteristics, and integration guidance. |
 | [Lierda L-LRMAM36-FANN4 Hardware Design Manual_CN_Rev1.0.pdf](docs/Lierda%20L-LRMAM36-FANN4%20Hardware%20Design%20Manual_CN_Rev1.0.pdf) | Chinese module hardware design manual for Chinese-language hardware integration reference. |
+| [Lierda L-LRMAM36-FANN4 Module Communication Distance Test Report_Rev1.0.pdf](docs/Lierda%20L-LRMAM36-FANN4%20Module%20Communication%20Distance%20Test%20Report_Rev1.0.pdf) | Module communication distance test report with laboratory RF performance data, and the open-area test method, measured communication distances, and test precautions for LoRa, FLRC, Wi-Fi, and BLE. |
 
 ## Development Environment
 
@@ -333,7 +334,8 @@ To stop the test, enter `flrc_burst_stop` on both boards. If only the transmitte
 |   |-- L-LRMAM36-FANN4-PK02_layout_V01.pdf
 |   |-- L-LRMAM36-FANN4_V01.step
 |   |-- Lierda L-LRMAM36-FANN4 Hardware Design Manual_CN_Rev1.0.pdf
-|   `-- Lierda L-LRMAM36-FANN4 Hardware Design Manual_EN_Rev1.0.pdf
+|   |-- Lierda L-LRMAM36-FANN4 Hardware Design Manual_EN_Rev1.0.pdf
+|   `-- Lierda L-LRMAM36-FANN4 Module Communication Distance Test Report_Rev1.0.pdf
 `-- main/
     |-- CMakeLists.txt
     |-- idf_component.yml

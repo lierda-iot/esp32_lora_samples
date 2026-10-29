@@ -223,4 +223,4 @@ flrc_burst_tx 1/1
 - [sdkconfig.defaults](sdkconfig.defaults): CLI line ending (CR), prompt, CPU 240 MHz, FreeRTOS tick 1000 Hz.
 - [main/idf_component.yml](main/idf_component.yml): dependency on `lierda-iot/esp_lora_driver` and the minimum ESP-IDF version.
 - LR2021 SPI and GPIO pins: options `CONFIG_LR2021_*` of the `esp_lora_driver` component, shown by `idf.py menuconfig`. Their defaults match the AM36 Pico board.
-- [docs/](docs): board schematic and layout, module hardware design manuals, and the module 3D model.
+- [docs/](docs): board schematic and layout, module hardware design manuals, the module communication distance test report, and the module 3D model.

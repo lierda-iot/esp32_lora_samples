@@ -78,6 +78,7 @@ L-LRMAM36-FANN4-PK02 是基于 Lierda AM36 模组 L-LRMAM36-FANN4 的评估开�
 | [L-LRMAM36-FANN4_V01.step](docs/L-LRMAM36-FANN4_V01.step) | AM36 模组 3D 结构模型，用于外壳适配、结构检查和安装参考。 |
 | [Lierda L-LRMAM36-FANN4 Hardware Design Manual_CN_Rev1.0.pdf](docs/Lierda%20L-LRMAM36-FANN4%20Hardware%20Design%20Manual_CN_Rev1.0.pdf) | 中文版模组硬件设计手册，用于查看模组规格、引脚定义、电气特性和集成设计说明。 |
 | [Lierda L-LRMAM36-FANN4 Hardware Design Manual_EN_Rev1.0.pdf](docs/Lierda%20L-LRMAM36-FANN4%20Hardware%20Design%20Manual_EN_Rev1.0.pdf) | 英文版模组硬件设计手册，适合英文环境下的硬件集成参考。 |
+| [Lierda L-LRMAM36-FANN4 Module Communication Distance Test Report_Rev1.0.pdf](docs/Lierda%20L-LRMAM36-FANN4%20Module%20Communication%20Distance%20Test%20Report_Rev1.0.pdf) | 模组通信距离测试报告（英文），包含实验室射频性能数据，以及 LoRa、FLRC、Wi-Fi、BLE 在室外空旷环境下的测试方法、通信距离数据和测试注意事项。 |
 
 ## 开发环境
 
@@ -333,7 +334,8 @@ flrc_burst_tx 1/1
 |   |-- L-LRMAM36-FANN4-PK02_layout_V01.pdf
 |   |-- L-LRMAM36-FANN4_V01.step
 |   |-- Lierda L-LRMAM36-FANN4 Hardware Design Manual_CN_Rev1.0.pdf
-|   `-- Lierda L-LRMAM36-FANN4 Hardware Design Manual_EN_Rev1.0.pdf
+|   |-- Lierda L-LRMAM36-FANN4 Hardware Design Manual_EN_Rev1.0.pdf
+|   `-- Lierda L-LRMAM36-FANN4 Module Communication Distance Test Report_Rev1.0.pdf
 `-- main/
     |-- CMakeLists.txt
     |-- idf_component.yml
